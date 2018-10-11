@@ -1,6 +1,9 @@
 # Swap files
 *.swp
 
+# package lock file
+package-lock.json
+
 # Deployable package zip
 index.zip
 

@@ -38,7 +38,7 @@ echo "----- Publishing lambda function to aws -----"
 $aws lambda update-function-code --function-name ${AWS_FUNCTION_NAME} --zip-file fileb://index.zip
 echo "----- Finished publishing -----"
 echo "----- Updating lambda function configuration -----"
-$aws lambda update-function-configuration --function-name ${AWS_FUNCTION_NAME} --environment '{"Variables":{"ALEXA_APP_ID":"'${ALEXA_APP_ID}'"}}'
+$aws lambda update-function-configuration --function-name ${AWS_FUNCTION_NAME} --environment '{"Variables":{"TRIVIA_URL":"'${TRIVIA_URL}'"}}'
 echo "----- Finished updating -----"
 
 # Cleanup

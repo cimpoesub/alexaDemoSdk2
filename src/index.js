@@ -1,15 +1,15 @@
 const Alexa = require('ask-sdk')
-const Comm = require('./communicationHelper')
+// const Comm = require('./communicationHelper')
 
-const data = {
-  messages: {
-    INITIAL_MESSAGE: 'Hello Bogdan, how can I help you? Would you like some trivia?',
-    GRETTING_MESSAGE: 'Hello everyone and welcome to Geeks on tour 2018! Bogdan totally has an idea what he\'s talking about and is not just winging it! Would you like to hear some trivia?',
-    FALLOWUP_MESSAGE: '. Would you like to hear more trivia?',
-    HELP_MESSAGE: 'This skill can tell you some trivia if you ask for trivia. It can also say hello to the public. Would you like to hear some trivia?',
-    GOODBYE_MESSAGE: 'Goodbye everyone! See you at the next event!'
-  }
-}
+// const data = {
+//   messages: {
+//     INITIAL_MESSAGE: 'Hello Bogdan, how can I help you? Would you like some trivia?',
+//     GRETTING_MESSAGE: 'Hello everyone and welcome to Geeks on tour 2018! Bogdan totally has an idea what he\'s talking about and is not just winging it! Would you like to hear some trivia?',
+//     FALLOWUP_MESSAGE: '. Would you like to hear more trivia?',
+//     HELP_MESSAGE: 'This skill can tell you some trivia if you ask for trivia. It can also say hello to the public. Would you like to hear some trivia?',
+//     GOODBYE_MESSAGE: 'Goodbye everyone! See you at the next event!'
+//   }
+// }
 
 const StartHandler = {
   canHandle(handlerInput) {
@@ -26,39 +26,39 @@ const StartHandler = {
   },
 }
 
-const SayHelloHandler = {
-  canHandle(handlerInput) {
-    const request = handlerInput.requestEnvelope.request
-    return request.type === 'IntentRequest'
-        && request.intent.name === 'SayHelloIntent'
-  },
-  handle(handlerInput) {
-    const speachText = data.messages.GRETTING_MESSAGE
+// const SayHelloHandler = {
+//   canHandle(handlerInput) {
+//     const request = handlerInput.requestEnvelope.request
+//     return request.type === 'IntentRequest'
+//         && request.intent.name === 'SayHelloIntent'
+//   },
+//   handle(handlerInput) {
+//     const speachText = data.messages.GRETTING_MESSAGE
 
-    return handlerInput.responseBuilder
-			.speak(speachText)
-			.reprompt()
-      .getResponse()
-  },
-}
+//     return handlerInput.responseBuilder
+// 			.speak(speachText)
+// 			.reprompt()
+//       .getResponse()
+//   },
+// }
 
-const TellTriviaHandler = {
-	canHandle(handlerInput) {
-		const request = handlerInput.requestEnvelope.request
-		return request.type === 'IntentRequest'
-			&& ( request.intent.name === 'TellTriviaIntent'
-			|| request.intent.name === 'AMAZON.YesIntent' )
-	},
-	async handle(handlerInput) {
-		const message = await Comm.getTrivia()
-		const speachText = message + data.messages.FALLOWUP_MESSAGE
+// const TellTriviaHandler = {
+// 	canHandle(handlerInput) {
+// 		const request = handlerInput.requestEnvelope.request
+// 		return request.type === 'IntentRequest'
+// 			&& ( request.intent.name === 'TellTriviaIntent'
+// 			|| request.intent.name === 'AMAZON.YesIntent' )
+// 	},
+// 	async handle(handlerInput) {
+// 		const message = await Comm.getTrivia()
+// 		const speachText = message + data.messages.FALLOWUP_MESSAGE
 
-		return handlerInput.responseBuilder
-			.speak(speachText)
-			.reprompt()
-			.getResponse()
-	},
-}
+// 		return handlerInput.responseBuilder
+// 			.speak(speachText)
+// 			.reprompt()
+// 			.getResponse()
+// 	},
+// }
 
 const HelpHandler = {
   canHandle(handlerInput) {
@@ -120,8 +120,8 @@ const skillBuilder = Alexa.SkillBuilders.custom()
 exports.handler = skillBuilder
   .addRequestHandlers(
 		StartHandler,
-    SayHelloHandler,
-    TellTriviaHandler,
+    // SayHelloHandler,
+    // TellTriviaHandler,
     HelpHandler,
     ExitHandler,
     FallbackHandler,
