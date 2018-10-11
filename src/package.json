@@ -1,0 +1,14 @@
+{
+  "name": "mytest",
+  "version": "1.0.0",
+  "description": "Demo skill for Geeks on tour 2018",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Bogdan Cimpoesu",
+  "license": "ISC",
+  "dependencies": {
+    "ask-sdk": "^2.1.0"
+  }
+}
