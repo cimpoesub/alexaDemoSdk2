@@ -1,0 +1,54 @@
+{
+  "interactionModel": {
+    "languageModel": {
+      "invocationName": "mytest",
+      "intents": [
+        {
+          "name": "AMAZON.FallbackIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.CancelIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.HelpIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.StopIntent",
+          "samples": [
+            "goodbye"
+          ]
+        },
+        {
+          "name": "AMAZON.NavigateHomeIntent",
+          "samples": []
+        },
+        {
+          "name": "SayHelloIntent",
+          "slots": [],
+          "samples": [
+            "Say hello to everyone",
+            "Greet everyone",
+            "Say hello"
+          ]
+        },
+        {
+          "name": "TellTriviaIntent",
+          "slots": [],
+          "samples": [
+            "Trivia",
+            "Tell me some trivia",
+            "Give me some trivia"
+          ]
+        },
+        {
+          "name": "AMAZON.YesIntent",
+          "samples": []
+        }
+      ],
+      "types": []
+    }
+  }
+}

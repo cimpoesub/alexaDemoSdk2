@@ -1,10 +1,10 @@
-const Alexa = require('ask-sdk');
-const Comm = require('./communicationHelper');
+const Alexa = require('ask-sdk')
+const Comm = require('./communicationHelper')
 
 const data = {
   messages: {
     INITIAL_MESSAGE: 'Hello Bogdan, how can I help you? Would you like some trivia?',
-    GRETTING_MESSAGE: 'Hello everyone and welcome to Hack TM 2018! Bogdan totally has an idea what he\'s talking about and is not just winging it! Would you like to hear some trivia?',
+    GRETTING_MESSAGE: 'Hello everyone and welcome to Geeks on tour 2018! Bogdan totally has an idea what he\'s talking about and is not just winging it! Would you like to hear some trivia?',
     FALLOWUP_MESSAGE: '. Would you like to hear more trivia?',
     HELP_MESSAGE: 'This skill can tell you some trivia if you ask for trivia. It can also say hello to the public. Would you like to hear some trivia?',
     GOODBYE_MESSAGE: 'Goodbye everyone! See you at the next event!'
@@ -13,8 +13,8 @@ const data = {
 
 const StartHandler = {
   canHandle(handlerInput) {
-    const request = handlerInput.requestEnvelope.request;
-    return request.type === 'LaunchRequest';
+    const request = handlerInput.requestEnvelope.request
+    return request.type === 'LaunchRequest'
   },
   async handle(handlerInput) {
     const speachText = data.messages.INITIAL_MESSAGE
@@ -22,100 +22,100 @@ const StartHandler = {
     return handlerInput.responseBuilder
 			.speak(speachText)
 			.reprompt()
-      .getResponse();
+      .getResponse()
   },
-};
+}
 
 const SayHelloHandler = {
   canHandle(handlerInput) {
-    const request = handlerInput.requestEnvelope.request;
+    const request = handlerInput.requestEnvelope.request
     return request.type === 'IntentRequest'
-        && request.intent.name === 'SayHelloIntent';
+        && request.intent.name === 'SayHelloIntent'
   },
-  async handle(handlerInput) {
+  handle(handlerInput) {
     const speachText = data.messages.GRETTING_MESSAGE
 
     return handlerInput.responseBuilder
 			.speak(speachText)
 			.reprompt()
-      .getResponse();
+      .getResponse()
   },
-};
+}
 
 const TellTriviaHandler = {
     canHandle(handlerInput) {
-      const request = handlerInput.requestEnvelope.request;
+      const request = handlerInput.requestEnvelope.request
       return request.type === 'IntentRequest'
 				&& ( request.intent.name === 'TellTriviaIntent'
-				|| request.intent.name === 'AMAZON.YesIntent' );
+				|| request.intent.name === 'AMAZON.YesIntent' )
     },
     async handle(handlerInput) {
-			const message = await Comm.getTrivia();
-			console.log('===== THIS IS THE MESSAGE HERE: ' + message)
+			const message = await Comm.getTrivia()
       const speachText = message + data.messages.FALLOWUP_MESSAGE
 
       return handlerInput.responseBuilder
 				.speak(speachText)
 				.reprompt()
-        .getResponse();
+        .getResponse()
     },
-  };
+  }
 
 const HelpHandler = {
   canHandle(handlerInput) {
-    const request = handlerInput.requestEnvelope.request;
+    const request = handlerInput.requestEnvelope.request
     return request.type === 'IntentRequest'
-      && request.intent.name === 'AMAZON.HelpIntent';
+      && request.intent.name === 'AMAZON.HelpIntent'
   },
   handle(handlerInput) {
     return handlerInput.responseBuilder
 			.speak(data.messages.HELP_MESSAGE)
 			.reprompt()
-      .getResponse();
+      .getResponse()
   },
-};
+}
 
 const FallbackHandler = {
   canHandle(handlerInput) {
-    const request = handlerInput.requestEnvelope.request;
+    const request = handlerInput.requestEnvelope.request
     return request.type === 'IntentRequest'
-      && request.intent.name === 'AMAZON.FallbackIntent';
+      && request.intent.name === 'AMAZON.FallbackIntent'
   },
   handle(handlerInput) {
-    const requestAttributes = handlerInput.attributesManager.getRequestAttributes();
     return handlerInput.responseBuilder
-      .speak(data.messages.INITIAL_MESSAGE)
-      .getResponse();
+			.speak(data.messages.INITIAL_MESSAGE)
+			.reprompt()
+      .getResponse()
   },
-};
+}
 
 const ExitHandler = {
   canHandle(handlerInput) {
-    const request = handlerInput.requestEnvelope.request;
+    const request = handlerInput.requestEnvelope.request
     return request.type === 'IntentRequest'
       && (request.intent.name === 'AMAZON.CancelIntent'
 				|| request.intent.name === 'AMAZON.NoIntent'
-				|| request.intent.name === 'AMAZON.StopIntent');
+				|| request.intent.name === 'AMAZON.StopIntent')
   },
   handle(handlerInput) {
     return handlerInput.responseBuilder
-      .speak(data.messages.GOODBYE_MESSAGE)
-      .getResponse();
+			.speak(data.messages.GOODBYE_MESSAGE)
+			.withShouldEndSession(true)
+      .getResponse()
   },
-};
+}
 
 const SessionEndedRequestHandler = {
   canHandle(handlerInput) {
-    const request = handlerInput.requestEnvelope.request;
-    return request.type === 'SessionEndedRequest';
+    const request = handlerInput.requestEnvelope.request
+    return request.type === 'SessionEndedRequest'
   },
   handle(handlerInput) {
-    console.log(`Session ended with reason: ${handlerInput.requestEnvelope.request.reason}`);
-    return handlerInput.responseBuilder.getResponse();
+    console.log(`Session ended with reason: ${handlerInput.requestEnvelope.request.reason}`)
+    return handlerInput.responseBuilder.getResponse()
   },
-};
+}
 
-const skillBuilder = Alexa.SkillBuilders.custom();
+const skillBuilder = Alexa.SkillBuilders.custom()
 
 exports.handler = skillBuilder
   .addRequestHandlers(
@@ -127,4 +127,4 @@ exports.handler = skillBuilder
     FallbackHandler,
     SessionEndedRequestHandler,
   )
-  .lambda();
+  .lambda()

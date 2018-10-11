@@ -1,6 +1,9 @@
 # !/bin/bash
 source .env
+
+# This should work with aws cli directly
 aws='C:\Progra~1\Amazon\AWSCLI\bin\aws.cmd'
+#aws=aws
 
 # If the archive exists, delete the old one
 if [ -e index.zip ]; then

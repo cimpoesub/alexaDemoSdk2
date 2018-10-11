@@ -22,8 +22,8 @@ async function getTrivia() {
 			}).on('error', (e) => {
 				console.log('\nError at get request: ' + e)
 				return reject( 'Couldn\'t connect to the trivia server. Please try again.')
-			});
-		});
+			})
+		})
 	})
 }
 
