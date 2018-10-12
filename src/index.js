@@ -4,8 +4,8 @@ const Alexa = require('ask-sdk')
 // const data = {
 //   messages: {
 //     INITIAL_MESSAGE: 'Hello Bogdan, how can I help you? Would you like some trivia?',
-//     GRETTING_MESSAGE: 'Hello everyone and welcome to Geeks on tour 2018! Bogdan totally has an idea what he\'s talking about and is not just winging it! Would you like to hear some trivia?',
-//     FALLOWUP_MESSAGE: '. Would you like to hear more trivia?',
+//     GREETING_MESSAGE: 'Hello everyone and welcome to Geeks on tour 2018! Bogdan totally has an idea what he\'s talking about and is not just winging it! Would you like to hear some trivia?',
+//     FOLLOWUP_MESSAGE: '. Would you like to hear more trivia?',
 //     HELP_MESSAGE: 'This skill can tell you some trivia if you ask for trivia. It can also say hello to the public. Would you like to hear some trivia?',
 //     GOODBYE_MESSAGE: 'Goodbye everyone! See you at the next event!'
 //   }
@@ -33,7 +33,7 @@ const StartHandler = {
 //         && request.intent.name === 'SayHelloIntent'
 //   },
 //   handle(handlerInput) {
-//     const speachText = data.messages.GRETTING_MESSAGE
+//     const speachText = data.messages.GREETING_MESSAGE
 
 //     return handlerInput.responseBuilder
 // 			.speak(speachText)
@@ -51,7 +51,7 @@ const StartHandler = {
 // 	},
 // 	async handle(handlerInput) {
 // 		const message = await Comm.getTrivia()
-// 		const speachText = message + data.messages.FALLOWUP_MESSAGE
+// 		const speachText = message + data.messages.FOLLOWUP_MESSAGE
 
 // 		return handlerInput.responseBuilder
 // 			.speak(speachText)
